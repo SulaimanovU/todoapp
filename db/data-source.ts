@@ -12,7 +12,7 @@ export const typeOrmModuleOptions: DataSourceOptions = {
     username: configService.get('DATABASE_USER'),
     password: configService.get('DATABASE_PASSWORD'),
     database: configService.get('DATABASE_NAME'),
-    entities: ['dist/**/*.entity.ts'],
+    entities: ['dist/src/*/entities/*.entity.js'],
     migrations: ['dist/db/migrations/*.js'],
 }
 

@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmModuleOptions } from 'db/data-source';
+import { AuthModule } from './auth/auth.module';
+import { TaskModule } from './task/task.module';
 
 @Module({
   imports: [
@@ -10,7 +12,9 @@ import { typeOrmModuleOptions } from 'db/data-source';
       useFactory: () => ({
         ...typeOrmModuleOptions
       })
-    })
+    }),
+    AuthModule,
+    TaskModule
   ],
   controllers: [],
   providers: [],
