@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    ports:
+      - 3000:3000
+    container_name: todoapp
+  db:
+    image: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    container_name: tododb
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: keiz
+      POSTGRES_DB: todo
+
+volumes:
+  pgdata:
