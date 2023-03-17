@@ -6,6 +6,8 @@ services:
     ports:
       - 3000:3000
     container_name: todoapp
+    environment:
+      DATABASE_HOST: db
   db:
     image: postgres
     volumes:
