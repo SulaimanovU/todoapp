@@ -7,29 +7,21 @@ import {
 import { AuthService } from '../services/auth.service';
 import { LoginDto } from '../utils/dto/login.dto';
 import { RegisterDto } from '../utils/dto/register.dto';
-import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 
 @ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @ApiResponse({ status: 200, type: RegisterDto })
+  @ApiResponse({ status: 200 })
   @Post('register')
   async registration(@Body() regData: RegisterDto) {
     return await this.authService.register(regData);
   }
 
-  @ApiResponse({ status: 200, type: LoginDto })
+  @ApiResponse({ status: 200 })
   @Post('login')
   async login(@Body() loginData: LoginDto) {
     return this.authService.login(loginData);
-  }
-  
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard)
-  @Get('profile')
-  getProfile(@Request() req) {
-    return req.user;
   }
 }

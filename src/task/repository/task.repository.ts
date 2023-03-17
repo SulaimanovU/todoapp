@@ -27,7 +27,7 @@ export class TaskRepository {
     const task = await this.taskRepository.findOneBy({ id });
     if(!task) return null;
 
-    return await this.taskRepository.softRemove(task);
+    return await this.taskRepository.remove(task);
   }
 
   async updateTask(taskData: UpdateTaskDto, userEntity: User): Promise<Task> {

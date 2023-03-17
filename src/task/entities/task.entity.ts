@@ -5,7 +5,8 @@ import {
   UpdateDateColumn, 
   PrimaryGeneratedColumn, 
   ManyToOne, 
-  JoinColumn 
+  JoinColumn,
+  DeleteDateColumn
 } from 'typeorm';
 import { User } from 'src/auth/entities/user.entity';
 
@@ -26,7 +27,4 @@ export class Task {
 
   @UpdateDateColumn({ type: 'timestamp' })
   updated_at: Date
-
-  @Column({ default: false, type: 'boolean', name: 'is_deleted' })
-  isDeleted: boolean;
 }

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from '../utils/dto/login.dto';
 import { RegisterDto } from '../utils/dto/register.dto';
@@ -13,6 +13,12 @@ export class AuthService {
   ) {}
 
   async register(regData: RegisterDto) {
+    const user = await this.userRepository.findUserByUsername(regData.username);
+
+    if(user) {
+      throw new ForbiddenException('Not possible to register user with same username');
+    }
+
     const hash = bcrypt.hashSync(regData.password, 8);
     regData.password = hash;
 

@@ -27,7 +27,4 @@ export class User {
 
   @UpdateDateColumn({ type: 'timestamp' })
   updated_at: Date
-
-  @Column({ default: false, type: 'boolean', name: 'is_deleted' })
-  isDeleted: boolean;
 }
